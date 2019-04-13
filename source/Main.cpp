@@ -6,6 +6,7 @@ using namespace std;
 int main(const int argc, char *argv[]) {
   std::string windowTitle = "Radix Demo";
   radix::Window window(windowTitle);
+  window.setEnableGamePad(false);
   window.create(32);
   return 0;
 }
