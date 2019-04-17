@@ -23,15 +23,18 @@ int main()
 {
   sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
   sf::RenderWindow window(getDesktopVideoMode(desktop), "Graphics Demo");
-  sf::Text text;
   sf::Font font;
   font.loadFromFile("/usr/share/fonts/TTF/impact.ttf");
+
+  sf::Text text;
   text.setFont(font);
   text.setCharacterSize(24);
   text.setPosition(10, 10);
+
   sf::CircleShape player(10.f);
   player.setFillColor(sf::Color(100, 250, 50));
   player.setPosition(desktop.width/2, desktop.height/2);
+
   while (window.isOpen())
     {
       exitIfNoJoystickDetected();
