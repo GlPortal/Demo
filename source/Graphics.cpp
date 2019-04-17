@@ -1,9 +1,18 @@
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "Math.cpp"
 
 sf::VideoMode getDesktopVideoMode(sf::VideoMode desktop) {
 
   return sf::VideoMode(desktop.width, desktop.height, desktop.bitsPerPixel);
+}
+
+void exitIfNoJoystickDetected() {
+  bool connected;
+  connected = sf::Joystick::isConnected(0);
+  if (!connected) {
+    exit(1);
+  }
 }
 
 int main()
@@ -16,44 +25,24 @@ int main()
   text.setFont(font);
   text.setCharacterSize(24);
   text.setPosition(10, 10);
-  sf::CircleShape shape(10.f);
-  shape.setFillColor(sf::Color(100, 250, 50));
-
-  float x = desktop.width/2;
-  float y = desktop.height/2;
-    bool connected;
-    while (window.isOpen())
+  sf::CircleShape player(10.f);
+  player.setFillColor(sf::Color(100, 250, 50));
+  player.setPosition(desktop.width/2, desktop.height/2);
+  while (window.isOpen())
     {
-      connected = sf::Joystick::isConnected(0);
-      if (!connected) {
-        exit(1);
-      }
+      exitIfNoJoystickDetected();
       sf::Event event;
       while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
           window.close();
       }
-      text.setString(std::to_string(x) + "/" + std::to_string(y));
-      shape.setPosition(x, y);
-      if (sf::Joystick::getAxisPosition(0, sf::Joystick::Y) > 50) {
-        y += 0.1;
-      }
-
-      if (sf::Joystick::getAxisPosition(0, sf::Joystick::Y) < -50) {
-        y -= 0.1;
-      }
-
-      if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 50) {
-        x += 0.1;
-      }
-
-      if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -50) {
-        x -= 0.1;
-      }
+      const sf::Vector2f playerPosition = player.getPosition();
+      text.setString(std::to_string(playerPosition.x) + "/" + std::to_string(playerPosition.y));
+      player.setPosition(getNewPositionX(playerPosition.x), getNewPositionY(playerPosition.y));
 
       window.clear(sf::Color::Black);
       window.draw(text);
-      window.draw(shape);
+      window.draw(player);
       window.display();
     }
 
