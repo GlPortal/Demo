@@ -15,6 +15,10 @@ void exitIfNoJoystickDetected() {
   }
 }
 
+std::string getPlayerPositionDebugString(sf::Vector2f playerPosition){
+  return std::to_string(playerPosition.x) + "/" + std::to_string(playerPosition.y);
+}
+
 int main()
 {
   sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
@@ -37,7 +41,7 @@ int main()
           window.close();
       }
       const sf::Vector2f playerPosition = player.getPosition();
-      text.setString(std::to_string(playerPosition.x) + "/" + std::to_string(playerPosition.y));
+      text.setString(getPlayerPositionDebugString(playerPosition));
       player.setPosition(getNewPositionX(playerPosition.x), getNewPositionY(playerPosition.y));
 
       window.clear(sf::Color::Black);
