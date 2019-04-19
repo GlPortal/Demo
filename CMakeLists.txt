@@ -12,6 +12,8 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 set(WINDOW_DEMO_LIBRARIES "")
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
 find_package(RadixWindow REQUIRED)
 find_package(SFML REQUIRED COMPONENTS network system graphics audio window)
 include_directories(${RADIX_WINDOW_INCLUDE_DIRS})
