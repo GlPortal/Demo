@@ -16,5 +16,6 @@ public:
   Player& getPlayer();
   sf::Font& getFont();
   void draw(sf::RenderWindow& window);
+  void step(const sf::Time deltaTime);
 };
 #endif /* SCENE_HPP */

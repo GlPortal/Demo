@@ -24,7 +24,6 @@ int main()
   sf::ContextSettings settings;
   sf::RenderWindow window(getDesktopVideoMode(desktop), "Graphics Demo", sf::Style::Fullscreen, settings);
 
-
   sf::Clock deltaClock;
 
   while (window.isOpen()) {
@@ -36,6 +35,7 @@ int main()
         window.close();
     }
     window.clear(sf::Color::Black);
+    scene.step(deltaTime);
     scene.draw(window);
     window.display();
   }

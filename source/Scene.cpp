@@ -27,10 +27,14 @@ sf::Font& Scene::getFont() {
 }
 
 void Scene::draw(sf::RenderWindow& window) {
-  player.update();
+  //  player.update();
   debugText.setString(getPlayerPositionDebugString(player.getPositionX(), player.getPositionY()));
   message.setString("Please Connect your controller");
   window.draw(message);
   window.draw(debugText);
   player.draw(window);
+}
+
+void Scene::step(const sf::Time deltaTime) {
+  player.step(deltaTime);
 }

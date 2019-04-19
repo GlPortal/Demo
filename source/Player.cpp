@@ -26,6 +26,20 @@ float Player::getNewPositionX(const float x){
   return result;
 }
 
+float Player::getNewPosition(const sf::Time deltaTime, const float oldPosition, sf::Joystick::Axis axis){
+  float result = oldPosition;
+  if (sf::Joystick::getAxisPosition(0, axis) > 30) {
+    result = oldPosition + speed * deltaTime.asSeconds();
+  }
+
+  if (sf::Joystick::getAxisPosition(0, axis) < -30) {
+    result = oldPosition - speed * deltaTime.asSeconds();
+  }
+
+  return result;
+}
+
+
 Player::Player(const sf::Color color) {
   sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
   const float verticalCenter = desktop.height/2;
@@ -61,4 +75,11 @@ float Player::getPositionX() {
 float Player::getPositionY() {
 
   return this->model.getPosition().y;
+}
+
+void Player::step(const sf::Time deltaTime) {
+  float x, y;
+  x = getNewPosition(deltaTime, getPositionX(), sf::Joystick::X);
+  y = getNewPosition(deltaTime, getPositionY(), sf::Joystick::Y);
+  setPosition(x, y);
 }
