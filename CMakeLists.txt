@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
-set(EXE_NAME windowDemo)
+set(EXE_NAME graphicsDemo)
 
 if(NOT DEFINED CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Build type")
@@ -14,10 +14,7 @@ set(WINDOW_DEMO_LIBRARIES "")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-find_package(RadixWindow REQUIRED)
 find_package(SFML REQUIRED COMPONENTS network system graphics audio window)
-include_directories(${RADIX_WINDOW_INCLUDE_DIRS})
-list(APPEND WINDOW_DEMO_LIBRARIES ${RADIX_WINDOW_LIBRARIES})
 
 include_directories(${SFML_INCLUDE_DIR})
 list(APPEND WINDOW_DEMO_LIBRARIES ${SFML_LIBRARIES})
