@@ -1,31 +1,5 @@
 #include "Player.hpp"
 
-float Player::getNewPositionY(const float y){
-  float result = y;
-  if (sf::Joystick::getAxisPosition(0, sf::Joystick::Y) > 30) {
-    result = y + 0.1;
-  }
-
-  if (sf::Joystick::getAxisPosition(0, sf::Joystick::Y) < -30) {
-    result = y - 0.1;
-  }
-
-  return result;
-}
-
-float Player::getNewPositionX(const float x){
-  float result = x;
-  if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 30) {
-    result = x + 0.1;
-  }
-
-  if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -30) {
-    result = x - 0.1;
-  }
-
-  return result;
-}
-
 float Player::getNewPosition(const sf::Time deltaTime, const float oldPosition, sf::Joystick::Axis axis){
   float result = oldPosition;
   if (sf::Joystick::getAxisPosition(0, axis) > 30) {
@@ -56,10 +30,6 @@ Player::Player(const sf::Color color) {
 void Player::draw(sf::RenderWindow& window) {
   window.draw(this->model);
   window.draw(this->weapon);
-}
-
-void Player::update() {
-  setPosition(getNewPositionX(getPositionX()), getNewPositionY(getPositionY()));
 }
 
 void Player::setPosition(float x, float y) {

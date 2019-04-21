@@ -11,9 +11,7 @@ private:
   sf::RectangleShape shield;
   const sf::Color color;
   const float width = 50;
-  const float speed = 200;
-  float getNewPositionY(const float y);
-  float getNewPositionX(const float x);
+  const float speed = 300;
   float getNewPosition(const sf::Time deltaTime, const float oldPosition, sf::Joystick::Axis axis);
 public:
   Player(const sf::Color color);
@@ -21,7 +19,6 @@ public:
   void setPosition(float x, float y);
   float getPositionX();
   float getPositionY();
-  void update();
   void draw(sf::RenderWindow& window);
   void step(const sf::Time deltaTime);
 };
