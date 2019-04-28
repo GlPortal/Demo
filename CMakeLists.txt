@@ -15,9 +15,11 @@ set(WINDOW_DEMO_LIBRARIES "")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 find_package(SFML REQUIRED COMPONENTS network system graphics audio window)
-
 include_directories(${SFML_INCLUDE_DIR})
 list(APPEND WINDOW_DEMO_LIBRARIES ${SFML_LIBRARIES})
+
+find_package(Catch REQUIRED)
+list(APPEND WINDOW_DEMO_LIBRARIES ${CATCH_INCLUDE_DIR})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
@@ -26,3 +28,14 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
 endif ()
 
 add_subdirectory(source)
+
+#### UNIT TESTING ####
+
+include_directories(${WINDOW_DEMO_LIBRARIES})
+enable_testing()
+add_subdirectory(tests)
+
+if (CMAKE_VERSION VERSION_GREATER 2.8.5)
+  include(FeatureSummary)
+  feature_summary(WHAT ALL)
+endif ()

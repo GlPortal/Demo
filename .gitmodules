@@ -1,3 +1,9 @@
 [submodule "external/Window"]
 	path = external/Window
 	url = https://github.com/GlPortal/Window.git
+[submodule "external/Catch2"]
+	path = external/Catch2
+	url = https://github.com/catchorg/Catch2/
+[submodule "external/catch"]
+	path = external/catch
+	url = https://github.com/catchorg/Catch2/
